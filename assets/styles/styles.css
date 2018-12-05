@@ -1,0 +1,305 @@
+@import url("https://fonts.googleapis.com/css?family=Gafata");
+img {
+    width:100%;
+    max-width:480px;
+    height:auto;
+    min-height:100px;
+    max-height:200px;
+    transition:all 0.3s ease-in-out;
+    box-shadow:0px 8px 6px -6px  black;
+    
+}
+figure {
+    display:block;
+    box-sizing:border-box;
+    overflow:hidden;
+    
+}
+figure figcaption {
+    position:relative;
+    width:41%;
+    top:-30px;
+    left:-500px;
+    background:white;
+    transition:all 0.5s linear;
+    
+}
+img:hover , figcaption {
+    transform:scale(1.1);
+    box-shadow:0px 8px 6px -10px  black;
+}
+img:hover + figcaption{
+    left:0px;
+}
+body {
+    padding:0;
+    margin:0;
+    box-sizing:border-box ;
+}
+.containerBack {
+    padding:0;
+    margin:0;
+    max-width:100vw;
+    overflow:hidden;
+}
+
+
+.text {
+    background:url("https://media.idownloadblog.com/wp-content/uploads/2016/04/iPhone-wallpaper-abstract-portrait-fishing-macinmac.jpg");
+    background-position:center 0;
+    background-size:cover;
+    background-repeat:no-repeat ;
+    height:500px;
+    max-height:800px;
+    perspective:100px;
+    transition:all 0s ease-in;
+    padding:0px;
+    margin:0px;
+}
+.topContent {
+    position:absolute;
+    top:40%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    text-align:center;
+    color:white;
+    transition:all .10s;
+    font-family:"Gafata";
+    font-size:21px;
+}
+@media (min-height:720px){
+	.topContent {
+		top:25%;
+	}
+}
+.topContent a {
+    text-decoration:none;
+    color:white;
+    border:2px solid white;
+    padding:10px 20px;
+    font-family:"Gafata";
+    font-size:14px;
+}
+.menu {
+    padding:0;
+    display:block;
+    height:50px;
+    margin:0;
+    z-index:1;
+    transition:all .5s;
+    background:#232323;
+}
+@media (min-width:500px) {
+    .menu {
+        background:rgba(0,0,0.5);
+    }
+}
+.menuOpen {
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:0;
+    background:rgba(0,0,0,0.9);
+    z-index:10;
+    clipPath:polygon(0% 0% ,100% 0% , 100% 50%,0% 80%);
+    transition:all 1s ease-in-out;
+    overflow:hidden;
+}
+.menuClose {
+    float:right;
+    margin:21px;
+    font-size:36px;
+}
+.menuOpen ul {
+    position:absolute;
+    top:0%;
+    left:50%;
+    width:100%;
+    margin:0;
+    padding:0;
+    transform:translateX(-50%);
+    text-align:center;
+    font-size:26px;
+}
+.menuOpen ul li {
+    list-style-type:none;
+    padding-top:21px;
+}
+.sticky {
+    position:fixed;
+    top:0;
+    width:100%;
+}
+
+
+nav a {
+    text-align:center;
+    float:right;
+    display:block;
+    padding:14px;
+    text-decoration:none;
+    color:white;
+    font-family:"Gafata";
+    font-size:28px;
+}
+@media (min-width:500px) {
+    nav{
+        display:none;
+    }
+    .text {
+        height:120vh;
+    }
+}
+nav p {
+    color:white;
+    float:left;
+    margin-left:10px;
+    font-family:"Gafata";
+}
+.top {
+    font-family:"Gafata";
+    text-align:center;
+    height:261px;
+    text-transform:uppercase ;
+}
+.center {
+    font-family:"Gafata";
+    text-align:center;
+    height:auto;
+    text-transform:uppercase ;
+}
+
+a:hover {
+    color:aqua;
+};
+.mainContent {
+    display:block;
+    position:absolute;
+    height:auto;
+}
+.mainContent p {
+	text-transform:lowercase;
+}
+.mainContent a {
+	color:#212121;
+}
+.widthLoad  {
+    position:relative;
+    top:0;
+    left:50%;
+    transform:translateX(-50%);
+    height:2px;
+    width:0px;
+    max-width:100vw;
+    background:black;
+    transform-orgin:50% 50%;
+}
+.footerContent {
+    width:100%;
+    height:auto;
+    background:#212121;
+    clip-path:polygon(0% 0%,100% 10% ,100% 100%,0% 100%);
+    display:block;
+}
+
+.footerText ,  a{
+    font-family:"Gafata";
+    color:white;
+    text-decoration:none;
+}
+.footerText {
+    position:relative;
+    top:20%;
+    padding-top:100px;
+    padding-bottom:100px;
+    z-index:10;
+}
+.footerText h1 , p {
+    text-align:center;
+}
+.topPage {
+    position:fixed;
+    top:80vh;
+    left:80vw;
+    height:40px;
+    width:40px;
+    border-radius:50%;
+    border:2px solid black;
+    background:white;
+    z-index:10;
+}
+@media (min-width:480px) {
+    .topPage {
+        top:60%;
+    }
+}
+.topPage span a {
+    font-size:60px;
+    position:relative;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    color:black;
+}
+.userSignup {
+    width:50%;
+} 
+.userSignup {
+    position:relative;
+    left:50%;
+    transform:translateX(-50%);
+}
+.userTexts {
+    display:block;
+    color:white;
+    text-transform:uppercase;
+}
+.userSignup input {
+    background:white;
+    position:relative;
+    left:50%;
+    transform:translateX(-50%);
+    border:2px solid #212121;
+    width:0;
+    transition:all 0.3s ease-in-out;
+}
+#buttonSubmit {
+    position:relative;
+    left:50%;
+    transform:translateX(-50%);
+    margin-top:10px;
+    font-size:36px;
+}
+#buttonSubmit:hover {
+    color:aqua;
+}
+.email , .confirmPassword, .emailText , .confirmPasswordText , .submitBtn {
+    display:none;
+}
+.show {
+    display:block;
+}
+.submitBtn {
+    margin-top:10px;
+}
+.buttonSub {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  background: transparent;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: 2px solid black;
+  margin-top: 20px;
+  transition: all 0.3s ease-in-out;
+}
+.buttonSub:hover{
+ background: black;
+ color: white;
+ padding-left: 40px;
+ padding-right: 40px;
+}
+    

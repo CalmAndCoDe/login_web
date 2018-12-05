@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Page Title</title>
+        <meta name="viewport"content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <link rel="stylesheet" href="../assets/styles/styles.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+        <script src="../assets/jquery/jquery.js"></script>
+    </head>
+    <body>
+       <div class="menuOpen">
+            <div class="menuClose">
+                <a class="fas fa-times"onclick = "closeMenu()"></a>
+            </div>
+                <ul>
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/users">Users</a></li>
+                    <li><a href="/home">Sign Up</a></li>
+                    
+                    <% if(user){ %>
+                    <li><a href="/admin">Admin</a></li>
+                    <% }else{ %>
+                    	<li><a href="/login">Login</a></li>
+                   <% } %>
+                    
+                </ul>
+       </div>
+    </body>
+</html>
+    
+    
