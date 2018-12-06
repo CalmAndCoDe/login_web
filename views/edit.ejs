@@ -15,7 +15,7 @@
             
             
         </section>
-       <%- include("partials/menu"); %>
+        <%- include("partials/menu"); %>
         </div>
         <div class="topContent">
              <h1><strong>L</strong>
@@ -26,51 +26,27 @@
              <p>Welcome to this website</p>
              <a href="#text">See Parallax</a>
        </div>
-       <%- include("partials/navbar") -%>
        
-       
+        
+        
+              <%- include("partials/navbar"); %>
+              
        <section class="mainContent">
            <div id="text2" class="center">
-           <h1>Create Post :</h1>
+           <h1>Edit Post: <%= post.title %></h1>
            <div class="widthLoad">
              <span></span>
            </div>
-           <form method="POST" action="/posts">
-           <p id="user">Title:</p>
-           <input id="userName" type="text" name="title" placeholder="Title">
-           <p id="passwordText">Post:</p>
-           <input id="password" type="textarea" name="post" placeholder="Post" style="height:50px;">
-           <input class="buttonSub" type="submit" style="display:block;">       
-                      
+           <form method="POST" action="/edit/">
+           <p>Post Title: </p>
+           <input type="text" name="title" value="<%= post.title %>">
+           <p>Post Text: </p>
+           <input type="text" name="post" value="<%= post.post %>">
+           <p> Author: <%= post.author %></p>
+          
            </form>
            </div>
-           
-       </section>
-       <section class="mainContent">
-           <div id="text2" class="center">
-           <h1>Posts:</h1>
-           <div class="widthLoad">
-             <span></span>
-           </div>
-            <ul>
-           <% post.forEach(function(post){ %>
-           	<li><a href="/edit/<%= post.id %>"><%= post.title %></a></li>
-           <% }); %>
-           </ul>
-           </div>
-       </section>
-       <section class="mainContent">
-           <div id="text2" class="center">
-           <h1>Messages:</h1>
-           <div class="widthLoad">
-             <span></span>
-           </div>
-           <ul>
-           <% contact.forEach(function(contact){ %>
-           	<li><a href="/dashboard/<%= contact.id %>"><%= contact.sender %></a></li>
-           <% }); %>
-           </ul>
-           </div>
+           <input type="submit" class="buttonSub">
        </section>
        
        <section class="userLogin">
@@ -84,11 +60,7 @@
                    <li><a href="#main">Home</a></li>
                    <li><a href="#text2">Contact Us</a></li>
                </ul>
-               
-
-              
                <p>Copyright &copy; Reserverd</p>
-               <p><%= data.email %></p>
            </div>
             
        </section>
@@ -102,8 +74,6 @@
        
     </body>
 </html>
-    
-    
     
     
     

@@ -154,6 +154,25 @@ router.get("/dashboard/:id",pageAccess,function(req,res){
   });
 });
 
+router.get("/edit/:id",pageAccess,function(req,res){
+	Posts.findOne({_id:req.params.id},function(err,data){
+		if(err){
+			console.log(err);
+		}
+		else if(data){
+		    if(req.user.email == data.author){
+			   res.render("edit",{post:data,user:req.user})
+			}else {
+				res.redirect("/home");
+			}
+	    }
+		else {
+			res.redirect("/login");
+		}
+	});
+	
+});
+
 
 
 var author = undefined;
@@ -294,6 +313,26 @@ router.post("/contact",urlencodedparser,function(req,res){
   });
   }
 });
+router.post("/edit/",function(req,res){
+	var title = req.body.title;
+	var post = req.body.post;
+	
+	req.checkBody("title","Post Title").notEmpty();
+	req.checkBody("text","Post Text").notEmpty();
+	errors = null;
+	errors = req.validationErrors();
+	Posts.findOneAndUpdate({author:req.user.email},{
+		title:title,
+		post:post,
+		author:req.user.email
+	},function(err,data){
+		if(err) throw err;
+		else {
+			console.log("done...");
+			res.redirect("/home");
+		}
+	})
+})
 module.exports = router;
     
     
