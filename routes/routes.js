@@ -7,6 +7,8 @@ var Posts = require("../posts");
 var Contact = require("../contact");
 var bcrypt = require("bcryptjs");
 var passport = require("passport");
+var Password= require("./reset-password");
+var resetPassword = new Password();
 //Database connection
 mongoose.connect(process.env.DBHOST1);
 var db1 = mongoose.createConnection(process.env.DBHOST2);
@@ -172,8 +174,26 @@ router.get("/edit/:id",pageAccess,function(req,res){
 	});
 	
 });
-
-
+router.get("/reset",function(req,res){
+	res.render("reset-password",{
+		user:req.user
+	});
+})
+router.get("/reset/:token",function(req,res){
+	Article.findOne({"token":req.params.token},function(err,data){
+		if(err){
+			console.log(err)
+		}else if(data === null || !data) {
+			res.sendStatus(401);
+		}else {
+			console.log(data);
+			res.locals.error= null;
+			resetPassword.gettoken(req.params.token);
+			res.render("password-input",{user:req.user})
+			
+		}
+	})
+})
 
 var author = undefined;
 var postCount;
@@ -333,7 +353,16 @@ router.post("/edit/",function(req,res){
 		}
 	})
 })
+router.post("/reset",function(req,res){
+	
+	resetPassword.getusername(req,res);
+	
+})
+router.post("/user/password",function(req,res){
+	resetPassword.password(req,res);
+})
 module.exports = router;
+    
     
     
     

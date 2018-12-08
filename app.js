@@ -15,7 +15,6 @@ var article = require("./count");
 var app = express();
 
 
-
 var app = express();
 
 // view engine setup
@@ -51,7 +50,14 @@ app.use(function(err, req, res, next) {
   //res.render('error');
 });
 
-//app.listen(8080 ,function(){
-//	console.log("app listen on port 8080");
-//})
+app.listen(8080 ,function(){
+	article.find({},function(err,data){
+		if(err){
+			console.log(err)
+		}else {
+			console.log(data);
+		}
+	})
+	console.log("app listen on port 8080");
+})
 module.exports = app;
