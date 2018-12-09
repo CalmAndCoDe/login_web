@@ -10,9 +10,9 @@ var passport = require("passport");
 var Password= require("./reset-password");
 var resetPassword = new Password();
 //Database connection
-mongoose.connect("mongodb://localhost/login" || process.env.DBHOST1);
-var db1 = mongoose.createConnection("mongodb://localhost/contact" || process.env.DBHOST2);
-var db2 = mongoose.createConnection("mongodb://localhost/posts" || process.env.DBHOST3);
+mongoose.connect(process.env.DBHOST1);
+var db1 = mongoose.createConnection(process.env.DBHOST2);
+var db2 = mongoose.createConnection(process.env.DBHOST3);
 
 var db = mongoose.connection;
 
@@ -385,6 +385,7 @@ router.post("/user/password",function(req,res){
 	resetPassword.password(req,res);
 })
 module.exports = router;
+    
     
     
     
