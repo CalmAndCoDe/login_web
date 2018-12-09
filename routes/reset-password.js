@@ -65,6 +65,7 @@ var ResetPassword = function(){}
 	ResetPassword.prototype.password = function(req,res){
 		var password = req.body.password;
 		req.checkBody("password","Password Required").notEmpty();
+		errors = null;
 		var errors = req.validationErrors();
 		
 		if(!errors){
@@ -114,6 +115,7 @@ var ResetPassword = function(){}
 module.exports = ResetPassword;
 
 
+    
     
     
     

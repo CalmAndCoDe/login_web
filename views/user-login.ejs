@@ -29,24 +29,28 @@
        
         
         
-              <%- include("partials/navbar"); %>
-              
+              <nav class="menu">
+                 
+                     <a class="fas fa-bars" onclick="openMenu()"></a>
+                     <p>WebSite<strong>Logo</strong></p>
+                     
+                 
+               </nav>   
+       
+       
        <section class="mainContent">
            <div id="text2" class="center">
-           <h1>Edit Post: <%= post.title %></h1>
+           <h1>Your Login Details</h1>
            <div class="widthLoad">
              <span></span>
            </div>
-           <form method="POST" action="/edit/" class="editPost">
-           <p>Post Title: </p>
-           <input type="text" name="title" value="<%= post.title %>">
-           <p>Post Text: </p>
-           <input type="text" name="post" value="<%= post.post %>">
-           <p> Author: <%= post.author %></p>
-          <input class="buttonSub" type="submit" style="display:block;"> 
-           </form>
-           <button id="delete" class="buttonSub" style="display:block">Delete Post</button>
+           <p>Username: <%= data.username %></p>
+          <p>Email: <%= data.email %></p>
+           	
+          </ul>
+           
            </div>
+           
        </section>
        
        <section class="userLogin">
@@ -60,6 +64,8 @@
                    <li><a href="#main">Home</a></li>
                    <li><a href="#text2">Contact Us</a></li>
                </ul>
+               
+               
                <p>Copyright &copy; Reserverd</p>
            </div>
             
@@ -74,8 +80,5 @@
        
     </body>
 </html>
-    
-    
-    
     
     

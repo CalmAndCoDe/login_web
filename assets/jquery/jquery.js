@@ -52,6 +52,7 @@ $(document).ready(function (){
         $(".topPage").hide();
         if($(".submitBtn").hasClass("show")){
         	$(".submitBtn").removeClass("show");
+        	$(".editPost").show();
         }
 $('a[href*="#"]')
     .not('[href="#"]') 
@@ -73,6 +74,33 @@ $('a[href*="#"]')
          });
          }
      });
+     $("#delete").on("click",function(){
+     	
+     	var url = window.location.href;
+     const regex = /(?!e|d|i|t\/)(\w+)$/mi;
+
+let m;
+var token;
+
+if ((m = regex.exec(url)) !== null) {
+    // The result can be accessed through the `m`-variable.
+    m.forEach((match, groupIndex) => {
+        console.log(`Found match, group ${groupIndex}: ${match}`);
+        token = match;
+    });
+}
+
+    
+    $.ajax({
+    	url:"/delete/" + token,
+    	type:"DELETE",
+    	data:token
+    })
+    $(this).css("background","#39CCCC");
+    $(".editPost").hide();
+   // window.location.href = "http://" || "https://" + window.location.hostname + "/login";
+
+     })
 });
 
 function submit(){
@@ -119,4 +147,5 @@ function closeMenu(){
     $(".menuOpen ul").animate({left : "150%"});
     
 }
+    
     

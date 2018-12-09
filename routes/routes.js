@@ -10,9 +10,9 @@ var passport = require("passport");
 var Password= require("./reset-password");
 var resetPassword = new Password();
 //Database connection
-mongoose.connect(process.env.DBHOST1);
-var db1 = mongoose.createConnection(process.env.DBHOST2);
-var db2 = mongoose.createConnection(process.env.DBHOST3);
+mongoose.connect("mongodb://localhost/login" || process.env.DBHOST1);
+var db1 = mongoose.createConnection("mongodb://localhost/contact" || process.env.DBHOST2);
+var db2 = mongoose.createConnection("mongodb://localhost/posts" || process.env.DBHOST3);
 
 var db = mongoose.connection;
 
@@ -46,6 +46,7 @@ router.get("/home" || "/",function(req,res){
 });
 
 router.get("/login",function(req,res){
+	   
 		res.locals.error = errors;
 		console.log(res.locals.error);
 		res.render("login",{
@@ -222,7 +223,8 @@ router.post("/signup",urlencodedparser,function(req,res){
       	res.redirect("/home");
       	errors = undefined;
       	}else{
-        res.render("contact-success",{data: req.body,user:req.user});
+      		res.render("user-login",{data: req.body,user:req.user});
+        
         
         bcrypt.genSalt(10, function(err, salt) {
           
@@ -240,6 +242,7 @@ router.post("/signup",urlencodedparser,function(req,res){
                   console.log(err);
                 }
                 else {
+                	
                   console.log(req.body.password + " is submitted to database...");
                 }
               });
@@ -353,6 +356,26 @@ router.post("/edit/",function(req,res){
 		}
 	})
 })
+router.delete("/delete/:id",function(req,res){
+	Posts.findOne({author:req.user.email},function(err,data){
+		if(err) throw err;
+		else if(!data || data === null){
+			res.redirect("/login");
+		}
+		else{
+	Posts.findByIdAndDelete({_id:req.params.id},function(err,data){
+		if(err){
+			console.log(err)
+		}else{
+		console.log("Post Deleted...");
+		}
+	}).then(function(data){
+		console.log(data)
+		res.send("Done");
+	})
+	}
+	});
+})
 router.post("/reset",function(req,res){
 	
 	resetPassword.getusername(req,res);
@@ -362,6 +385,8 @@ router.post("/user/password",function(req,res){
 	resetPassword.password(req,res);
 })
 module.exports = router;
+    
+    
     
     
     
