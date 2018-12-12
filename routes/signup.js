@@ -28,7 +28,7 @@ Signup.prototype.getuser = function(req,res){
       	res.redirect("/home");
       	errors = undefined;
       	}else{
-      		res.render("user-login",{data: req.body:req.user});
+      		res.render("user-login",{data: req.body,user:req.user});
         
         
         bcrypt.genSalt(10, function(err, salt) {
@@ -125,4 +125,5 @@ function deletetoken(user){
 	})
 }
 module.exports = Signup;
+    
     
