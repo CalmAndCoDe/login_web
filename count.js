@@ -6,7 +6,8 @@ var schema = mongoose.Schema({
 	user: String,
 	password: String,
 	token:String,
-	tokentime:String
+	tokentime:String,
+	saved:Boolean
 },{
 	collection: "login"
 });

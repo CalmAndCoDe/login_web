@@ -18,7 +18,7 @@ passport.deserializeUser(function(user, done) {
 });
 
 passport.use(new LocalStrategy(function(username,password,done){
-	Article.findOne({user:username},function(err,data){
+	Article.findOne({user:username,saved:true},function(err,data){
 		if(err){
 			done(err);
 		}else{
@@ -29,7 +29,6 @@ passport.use(new LocalStrategy(function(username,password,done){
 					if(pass === true){
 					done(null,{
 						username:data.user,
-						password:data.password,
 						email:data.email
 					});
 				    }

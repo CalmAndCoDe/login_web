@@ -8,7 +8,9 @@ var Contact = require("../contact");
 var bcrypt = require("bcryptjs");
 var passport = require("passport");
 var Password= require("./reset-password");
+var Signup = require("./signup")
 var resetPassword = new Password();
+var useremail = new Signup();
 //Database connection
 mongoose.connect(process.env.DBHOST1);
 var db1 = mongoose.createConnection(process.env.DBHOST2);
@@ -195,6 +197,9 @@ router.get("/reset/:token",function(req,res){
 		}
 	})
 })
+router.get("/verifyemail/:token",function(req,res){
+	useremail.emailtoken(req,res);
+})
 
 var author = undefined;
 var postCount;
@@ -202,61 +207,7 @@ var postCount;
 
 //POST Data Entry
 router.post("/signup",urlencodedparser,function(req,res){
-	var username = req.body.username;
-	var email = req.body.email;
-	var password = req.body.password;
-  Article.findOne({email:req.body.email},function(err,data){
-    if(err){
-      console.log(err);
-    }else if(data) {
-    	res.locals.error = "Your Email is Registered";
-      res.redirect("login");
-    }else {
-    	
-      req.checkBody("username","Username Required").notEmpty();
-      req.checkBody("email","Email required").isEmail();
-      module.exports = errors = req.validationErrors();
-      
-      //console.log(errors)
-      if(errors){
-      	res.locals.error= errors;
-      	res.redirect("/home");
-      	errors = undefined;
-      	}else{
-      		res.render("user-login",{data: req.body,user:req.user});
-        
-        
-        bcrypt.genSalt(10, function(err, salt) {
-          
-          bcrypt.hash(req.body.password, salt, function(err, hash) {
-            if(err){
-              console.log(err);
-            }else{
-              var Login = new Article({
-                user: req.body.username,
-                email: req.body.email,
-                password : hash
-              });
-              Login.save(function (err){
-                if(err){
-                  console.log(err);
-                }
-                else {
-                	
-                  console.log(req.body.password + " is submitted to database...");
-                }
-              });
-            }
-            
-          });
-          
-        });
-        
-        
-      }
-    }
-  })
-  
+	useremail.getuser(req,res);
 });
 
 
