@@ -103,7 +103,7 @@ Signup.prototype.emailtoken = function(req,res){
 	},function(err,done){
 		if(err){
 			console.log(err)
-		}else if(!data || data === null){
+		}else if(!done || done === null){
 			res.sendStatus(404)
 		}else {
 			res.redirect("/login");
